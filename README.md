@@ -1,24 +1,4 @@
-# README
+# Spool Tracker
+[![Build Status](https://travis-ci.org/toastynerd/spool_tracker.svg?branch=master)](https://travis-ci.org/toastynerd/spool_tracker)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A tracker for gathering data on 3d prints.
