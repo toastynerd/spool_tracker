@@ -6,4 +6,4 @@
 
 test_user:
   email: "normaltestuser@example.com"
-  encrypted_password: "testtest"
+  encrypted_password: <%= User.new.send(:password_digest, "testtest") %>
