@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_091848) do
+ActiveRecord::Schema.define(version: 2021_05_30_095239) do
 
   create_table "prints", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2021_05_30_091848) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_prints_on_user_id"
+  end
+
+  create_table "spools", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "rfid"
+    t.string "material"
+    t.string "manufacturer"
+    t.date "purchased"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_spools_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +46,5 @@ ActiveRecord::Schema.define(version: 2021_05_30_091848) do
   end
 
   add_foreign_key "prints", "users"
+  add_foreign_key "spools", "users"
 end

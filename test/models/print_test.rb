@@ -4,6 +4,7 @@ class PrintTest < ActiveSupport::TestCase
   setup do
     @user = User.first
   end
+
   test "print should not save without a user" do
     print = Print.new
     assert_not print.save
