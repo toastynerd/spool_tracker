@@ -39,3 +39,4 @@
 yarn-debug.log*
 .yarn-integrity
 **/.*.sw?
+Gemfile.lock
