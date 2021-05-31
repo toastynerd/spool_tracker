@@ -1,1 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+test_spool:
+  user: test_user
+  rfid: "test rfid"
+  material: "pla"
+  manufacturer: "hatchbox"
+  purchased: Date.today
