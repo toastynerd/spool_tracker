@@ -5,9 +5,11 @@ one:
   settings: MyText
   file: MyString
   success: false
+  spool: test_spool
 
 two:
   user: two
   settings: MyText
   file: MyString
   success: false
+  spool: test_spool
