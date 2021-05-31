@@ -5,3 +5,10 @@ test_spool:
   material: "pla"
   manufacturer: "hatchbox"
   purchased: Date.today
+
+test_spool_no_prints:
+  user: test_user
+  rfid: "test rfid"
+  material: "pla"
+  manufacturer: "hatchbox"
+  purchased: Date.today

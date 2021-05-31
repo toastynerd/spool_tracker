@@ -25,8 +25,13 @@ class PrintTest < ActiveSupport::TestCase
     assert_not print.save
   end
 
-  test "print should save with a user and valid inputs" do
+  test "print should require a spool" do
     print = @user.prints.build(settings: "some test settings", file: "some test file", success: true)
+    assert_not print.save
+  end
+
+  test "print should save with a user and valid inputs" do
+    print = @user.prints.build(settings: "some test settings", file: "some test file", success: true, spool: spools(:test_spool))
     assert print.save
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_095239) do
+ActiveRecord::Schema.define(version: 2021_05_31_184654) do
 
   create_table "prints", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_05_30_095239) do
     t.boolean "success"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "spool_id"
+    t.index ["spool_id"], name: "index_prints_on_spool_id"
     t.index ["user_id"], name: "index_prints_on_user_id"
   end
 
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_095239) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "prints", "spools"
   add_foreign_key "prints", "users"
   add_foreign_key "spools", "users"
 end
