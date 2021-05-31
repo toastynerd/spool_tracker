@@ -1,0 +1,16 @@
+<%= form_with model: spool do |form| %>
+  <%= form.label :rfid %>
+  <%= form.text_field :rfid %>
+  <%= render "shared/form_errors", locals: { field: :rfid, resource: spool } %>
+
+  <%= form.label :manufacturer %>
+  <%= form.text_field :manufacturer %>
+
+  <%= form.label :material %>
+  <%= form.text_field :material %>
+
+  <%= form.label :purchased %>
+  <%= form.date_field :purchased %>
+
+  <%= form.submit %>
+<% end %>

@@ -1,0 +1,5 @@
+<ul>
+  <%  locals[:resource].errors.full_messages_for(locals[:field]).each do |error| %>
+  <li><%= error %></li>
+<% end %>
+</ul>
