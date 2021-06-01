@@ -1,8 +1,8 @@
 <h2>Spools for <%= current_user.email %></h2>
 
 <%= link_to "Create New Spool", new_spool_path %>
-<ul>
+<ul class="spools">
   <% @spools.each do |spool| %>
-    <%= render "spool_list", spool: spool %>
+    <%= render "spool_list_item", spool: spool %>
   <% end %>
 </ul>
