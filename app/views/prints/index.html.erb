@@ -1,0 +1,8 @@
+<h2>Prints for <%= current_user.email %></h2>
+
+<%= link_to "Start New Print", new_print_path %>
+<ul class="prints">
+  <% @prints.each do |print| %>
+    <%= render "print_list_item", print: print %>
+  <% end %>
+</ul>
