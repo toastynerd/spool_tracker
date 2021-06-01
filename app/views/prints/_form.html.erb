@@ -3,6 +3,14 @@
   <%= form.select :spool_id, options_for_select(@spools.map{ |s| ["#{s.manufacturer} #{s.material}", s.id]})%>
   <%= render "shared/form_errors", locals: {field: :spool_id, resource: print} %>
 
+  <%= form.label :print_name%>
+  <%= form.text_field :print_name%> 
+  <%= render "shared/form_errors", locals: {field: :print_name, resource: print} %>
+
+  <%= form.label :description %>
+  <%= form.text_field :description %> 
+  <%= render "shared/form_errors", locals: {field: :description, resource: print} %>
+
   <%= form.label :settings %>
   <%= form.text_field :settings %> <!-- TODO serialize the format used by cura and display in readable format -->
   <%= render "shared/form_errors", locals: {field: :settings, resource: print} %>
@@ -14,6 +22,11 @@
   <%= form.label :success %>
   <%= form.check_box :success %>
   <%= render "shared/form_errors", locals: {field: :success, resource: print} %>
+
+  <%= form.label :notes%>
+  <%= form.text_field :notes%> 
+  <%= render "shared/form_errors", locals: {field: :notes, resource: print} %>
+
 
   <%= form.submit %>
 <% end %>
