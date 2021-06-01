@@ -1,0 +1,9 @@
+ul.navbar {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+ul.navbar>li {
+  padding-left: 2rem;
+}

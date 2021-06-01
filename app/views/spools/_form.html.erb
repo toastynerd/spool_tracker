@@ -1,16 +1,20 @@
 <%= form_with model: spool do |form| %>
   <%= form.label :rfid %>
   <%= form.text_field :rfid %>
-  <%= render "shared/form_errors", locals: { field: :rfid, resource: spool } %>
+  <%= render "shared/form_errors", locals: { field: :rfid, resource: spool } unless spool.errors.empty? %>
 
   <%= form.label :manufacturer %>
   <%= form.text_field :manufacturer %>
+  <%= render "shared/form_errors", locals: { field: :manufacturer, resource: spool } unless spool.errors.empty? %>
+
 
   <%= form.label :material %>
   <%= form.text_field :material %>
+  <%= render "shared/form_errors", locals: { field: :material, resource: spool } unless spool.errors.empty? %>
 
   <%= form.label :purchased %>
   <%= form.date_field :purchased %>
+  <%= render "shared/form_errors", locals: { field: :purchased, resource: spool } unless spool.errors.empty? %>
 
   <%= form.submit %>
 <% end %>

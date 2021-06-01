@@ -11,10 +11,13 @@
   </head>
 
   <body>
-    <% if current_user %>
-      <span class="current_user"><%= current_user.email %></span>
-      <%= link_to("Log Out", destroy_user_session_path) %>
-    <% end %>
-    <%= yield %>
+    <div class="wrapper">
+      <header>
+        <%= render "shared/navbar" %>
+      </header>
+      <main>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
