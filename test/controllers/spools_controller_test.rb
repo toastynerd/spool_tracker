@@ -3,6 +3,7 @@ require "test_helper"
 class SpoolsControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:test_user)
+    @spool_params = {rfid: "new rfid", material: "pla", manufacturer: "hatchbox", purchased: Date.today}
   end
 
   test "should have an index" do
@@ -16,7 +17,7 @@ class SpoolsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create a new spool" do
-    post spools_path, params: {spool: {rfid: "test rfid", material: "pla", manufacturer: "hatchbox", purchased: Date.today}}
+    post spools_path, params: {spool: @spool_params}
     assert_response :redirect #on a successful create redirects to the mainto the index page
   end
 
@@ -30,8 +31,15 @@ class SpoolsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not be able to edit a spool that isn't thiers" do
+    sign_in users(:test_user_not_owner)
+    get edit_spool_path(spools(:test_spool))
+    
+    assert_response :unauthorized
+  end
+
   test "should be able to patch a spool" do
-    patch spool_path(Spool.first[:id]), params: {spool: {rfid: "new rfid", material: "pla", manufacturer: "hatchbox", purchased: Date.today}}
+    patch spool_path(Spool.first[:id]), params: {spool: @spool_params}
     assert_response :redirect
   end
 
@@ -40,8 +48,15 @@ class SpoolsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not be able to patch a spool that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    patch spool_path(spools(:test_spool)), params: {spool: @spool_params}
+
+    assert_response :unauthorized
+  end
+
   test "should be able to put a spool" do
-    put spool_path(Spool.first[:id]), params: {spool: {rfid: "antoher new rfid", material: "pla", manufacturer: "hatchbox", purchased: Date.today}}
+    put spool_path(Spool.first[:id]), params: {spool: @spool_params}
     assert_response :redirect
   end
 
@@ -50,8 +65,22 @@ class SpoolsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not be able to put a spool that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    put spool_path(spools(:test_spool)), params: {spool: @spool_params}
+
+    assert_response :unauthorized
+  end
+
+  test "should not be able to delete a spool that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    delete spool_path(spools(:test_spool))
+
+    assert_response :unauthorized
+  end
+
   test "should be able to delete a spool" do
-    delete spool_path(Spool.first[:id])
+    delete spool_path(spools(:test_spool))
     assert_response :redirect
   end
 end

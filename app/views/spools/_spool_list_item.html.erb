@@ -1,7 +1,9 @@
 <li>
   <%= spool.manufacturer %> <%= spool.material %> bought on <%= spool.purchased %>
-  <%= link_to "Edit", edit_spool_path(spool) %>
-  <%= link_to "Delete", spool_path(spool),
-    method: :delete
-  %>
+  <% if spool.is_owner?(current_user) %>
+    <%= link_to "Edit", edit_spool_path(spool) %>
+    <%= link_to "Delete", spool_path(spool),
+      method: :delete
+    %>
+  <% end %>
 </li>

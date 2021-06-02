@@ -20,27 +20,39 @@ class SpoolsController < ApplicationController
 
   def edit
     @spool = Spool.find(params[:id])
+    unauthorized unless @spool.is_owner?(current_user)
   end
 
   def update
     @spool = Spool.find(params[:id])
-
-    if @spool.update(spool_params)
-      redirect_to spools_path
+    if @spool.is_owner?(current_user) 
+      if @spool.update(spool_params)
+        redirect_to spools_path
+      else
+        render :edit
+      end
     else
-      render :edit
+      unauthorized
     end
   end
 
   def destroy
     @spool = Spool.find(params[:id])
-    @spool.destroy
+    if @spool.is_owner?(current_user)
+      @spool.destroy
 
-    redirect_to spools_path
+      redirect_to spools_path
+    else
+      unauthorized
+    end
   end
 
   private
   def spool_params
     params.require(:spool).permit(:rfid, :material, :manufacturer, :purchased)
+  end
+
+  def unauthorized
+    render file: "public/401.html", status: :unauthorized
   end
 end
