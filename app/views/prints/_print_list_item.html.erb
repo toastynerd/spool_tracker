@@ -1,5 +1,7 @@
 <li>
   <%= print.print_name %> printed on <%= print.created_at %>
-  <%= link_to "Edit", edit_print_path(print) %>
-  <%= link_to "Delete", print_path(print), method: :delete %>
+  <% if print.is_owner?(current_user) %>
+    <%= link_to "Edit", edit_print_path(print) %>
+    <%= link_to "Delete", print_path(print), method: :delete %>
+  <% end %>
 </li>

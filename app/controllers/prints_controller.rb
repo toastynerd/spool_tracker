@@ -21,22 +21,31 @@ class PrintsController < ApplicationController
 
   def edit
     @print = Print.find(params[:id])
+    unauthorized unless @print.is_owner?(current_user)
   end
 
   def update
     @print = Print.find(params[:id])
-    if @print.update(print_params)
-      redirect_to prints_path
+    if @print.is_owner?(current_user)
+      if @print.update(print_params)
+        redirect_to prints_path
+      else
+        render :edit
+      end
     else
-      render :edit
+      unauthorized
     end
   end
 
   def destroy
     @print = Print.find(params[:id])
-    @print.destroy
+    if @print.is_owner?(current_user)
+      @print.destroy
 
-    redirect_to prints_path
+      redirect_to prints_path
+    else
+      unauthorized
+    end
   end
 
   private
@@ -46,5 +55,9 @@ class PrintsController < ApplicationController
 
   def get_spools
     @spools = current_user.spools
+  end
+
+  def unauthorized
+    render file: "public/401.html", status: :unauthorized
   end
 end

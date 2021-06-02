@@ -39,14 +39,44 @@ class PrintsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not be able to edit a print that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    get edit_print_path(prints(:print_one))
+
+    assert_response :unauthorized
+  end
+
   test "should update with a patch" do
     patch print_path(prints(:print_one), {print: @print_params})
     assert_response :redirect
   end
 
+  test "should not be able to patch a print that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    patch print_path(prints(:print_one), {print: @print_params})
+
+    assert_response :unauthorized
+  end
+
   test "should update with a put" do
     put print_path(prints(:print_one), {print: @print_params})
     assert_response :redirect
+  end
+
+  test "should not be able to put a print that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    put print_path(prints(:print_one), {print: @print_params})
+
+    assert_response :unauthorized
+  end
+
+
+
+  test "should not be able to destroy a print that isn't theirs" do
+    sign_in users(:test_user_not_owner)
+    delete print_path(prints(:print_two))
+
+    assert_response :unauthorized
   end
 
   test "should be able to destroy a print" do
