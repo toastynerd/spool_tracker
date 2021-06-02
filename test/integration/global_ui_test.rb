@@ -9,14 +9,14 @@ class GlobalUiTest < ActionDispatch::IntegrationTest
   test "signed in user has name displayed" do
     sign_in users(:test_user)
 
-    get "/"
+    get "/spools"
     assert_select "span", "normaltestuser@example.com"
   end
 
   test "signed in user has log out button" do
     sign_in users(:test_user)
 
-    get "/"
+    get "/spools"
     assert_select "a", "Log Out"
   end
 end

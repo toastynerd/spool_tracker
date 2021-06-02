@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_062850) do
+ActiveRecord::Schema.define(version: 2021_06_02_172636) do
+
+  create_table "printers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "manufacturer"
+    t.string "model"
+    t.text "modifications"
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_printers_on_user_id"
+  end
 
   create_table "prints", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -50,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_062850) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "printers", "users"
   add_foreign_key "prints", "spools"
   add_foreign_key "prints", "users"
   add_foreign_key "spools", "users"
