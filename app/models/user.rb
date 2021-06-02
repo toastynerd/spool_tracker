@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :prints
   has_many :spools
+  has_many :printers
 
   validates :password_confirmation, presence: true, on: :create
 end
