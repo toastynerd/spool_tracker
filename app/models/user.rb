@@ -10,6 +10,7 @@ class User < ApplicationRecord
   #will attach to basic models and be populated from an ini file
   has_many :prusa_settings_printers
   has_many :prusa_settings_prints
+  has_many :prusa_settings_filaments
 
   validates :password_confirmation, presence: true, on: :create
 end
