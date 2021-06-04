@@ -1,0 +1,2 @@
+class PrusaSettingsController < ApplicationController
+end

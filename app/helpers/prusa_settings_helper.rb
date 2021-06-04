@@ -1,0 +1,2 @@
+module PrusaSettingsHelper
+end
