@@ -1,20 +1,34 @@
+@import "colors";
+
 body {
-  background-color: #ccc;
+  background-color: $accent_light;
+  color: $primary;
 }
 
 .wrapper {
   width: 100%;
   margin: auto;
   display: flex;
-  background-color: #fff;
+  background-color: $primary_light; 
   flex-direction: column;
   align-items: stretch;
   border-radius: 5px;
 }
 
+a {
+  color: $accent_light;
+}
+
+input[type=submit] {
+  background-color: $accent-light;
+  color: $accent_dark;
+  border: 2px solid $accent_dark;
+  border-radius: 3px;
+}
+
 header {
   text-align: center;
-  background-color: #777;
+  background-color: $accent_dark;
   padding: 1em;
   margin: 1em;
   border-radius: 5px;
